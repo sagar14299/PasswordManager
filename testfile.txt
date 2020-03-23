@@ -1,0 +1,9 @@
+create array of questions
+create classes to store question and answer
+create array of objects
+function 
+loop through each question
+keep track of each question correct
+if correct show correct and increase score count
+else show wrong
+at the end display how many you got correct
