@@ -1,0 +1,8 @@
+THINGS TO DO FOR PASSWORD MANAGER :
+ask if want to create new account or existing to sign in
+take username and master password. store it in bin file
+after that ask for title then ask for user to write or paste the password 
+and then store it in dictionary as bin
+show the list of available password by showing only key or title
+let the user choose the key and show the value
+should be able to append
