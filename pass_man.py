@@ -13,7 +13,7 @@ def sign_in() :
 
 def create_acc() :
 
-    accDict = {}        #used to store master name and password
+    accDict = {}        #used to store master name and pass
     #asking for uname n pass
     uName = input("Enter username :")
     mPass1 = input("Enter your password : " )
