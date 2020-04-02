@@ -1,18 +1,33 @@
 #PROGRAM TO STORE PASSWORDS
-import os
-import json
-
-fp = open("master_pass.json","a+")
-if os.stat("master_pass.json").st_size ==0 :
-    dummy = {"Username" : "Password"}
-    json.dump(dummy, fp, indent=4)
-fp.close()
+import os, json
+def managing() :
+    pass
 
 def sign_in() :
     pass
+    with open("master_pass.json","r") as fp :
+        data = json.load(fp)
+        while True :
+            uName = input("Enter username: ")
+            if uName in data.keys() :
+                break
+            else :
+                print("No such username")
+        while True :
+            mPass = input("Enter password: ")
+            if any(mPass in val for val in data.values() ) :    #returns true if there is any mpass in value i.e list and val is dict value which is looped through and returns true if exist
+                #print("password is there")
+                break
+            else :
+                print("Incorrect Password")
+    managing()
 
 def create_acc() :
-
+    fp = open("master_pass.json","a+")
+    if os.stat("master_pass.json").st_size ==0 :
+        dummy = {"Username" : "Password"}
+        json.dump(dummy, fp, indent=4)
+    fp.close()
     accDict = {}        #used to store master name and pass
     #asking for uname n pass
     uName = input("Enter username :")
@@ -22,7 +37,7 @@ def create_acc() :
     while True :
         mPass2 = input("Re-enter your password : ")
         if mPass1 == mPass2 :
-            accDict.update({uName : mPass1})
+            accDict.update({uName : [mPass1]})
             with open("master_pass.json","r+") as fp :
                 data = json.load(fp)
                 data.update(accDict)
