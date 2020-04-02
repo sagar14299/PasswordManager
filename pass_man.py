@@ -15,10 +15,11 @@ def managing(userName) :
                 #again loading n dumping
                 data = json.load(fp)
                 data[userName] = data.get(userName,[]) + [{acc_name : acc_info}]
+                print(data.values())
                 fp.seek(0)
                 json.dump(data, fp, indent=4)
                 print("Data Saved!!\n")
-                managing(userName)
+            managing(userName)
         
         elif ans == 2 :
             print("\nYou have following information stored:")
@@ -34,6 +35,7 @@ def managing(userName) :
                 key = input("Give the name of info you want to see: ")
                 info = dic.get(key,None)
                 print("UserName: "+str(list(info.keys()))+"\nPassword: "+str(list(info.values())))
+            managing(userName)
         
         else:
             print("Invalid Index! Try again.")
@@ -56,7 +58,6 @@ def sign_in() :
         while True :
             mPass = input("Enter password: ")
             if any(mPass in val for val in data.values() ) :    #returns true if there is any mpass in value i.e list and val is dict value which is looped through and returns true if exist
-                #print("password is there")
                 break
             else :
                 print("Incorrect Password")
