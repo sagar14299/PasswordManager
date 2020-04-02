@@ -34,7 +34,10 @@ def managing(userName) :
                 #asking which account to show info for :
                 key = input("Give the name of info you want to see: ")
                 info = dic.get(key,None)
-                print("UserName: "+str(list(info.keys()))+"\nPassword: "+str(list(info.values())))
+                try :
+                    print("UserName: "+str(list(info.keys()))+"\nPassword: "+str(list(info.values())))
+                except :
+                    print(None)
             managing(userName)
         
         else:
