@@ -25,7 +25,15 @@ def managing(userName) :
             with open("master_pass.json","r+") as fp :
                 data = json.load(fp)
                 items = data.get(userName)
-                print(items[1:])
+                #getting dicts stored in list on master username
+                dic = {}
+                for i in items[1:] :
+                    dic.update(i)
+                print(list(dic.keys()))
+                #asking which account to show info for :
+                key = input("Give the name of info you want to see: ")
+                info = dic.get(key,None)
+                print("UserName: "+str(list(info.keys()))+"\nPassword: "+str(list(info.values())))
         
         else:
             print("Invalid Index! Try again.")
