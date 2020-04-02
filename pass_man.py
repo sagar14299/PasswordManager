@@ -1,28 +1,32 @@
 #PROGRAM TO STORE PASSWORDS
 import os, json
 
-def storing(userName) :
-    with open("master_pass.json","r+") as fp :
-        acc_name = input("Enter the name of service you want to store info for: ")
-        uName = input("Enter email or username: ")
-        password = input("Enter password: ")
-        acc_info = {uName : password}
-        #again loading n dumping
-        data = json.load(fp)
-        data[userName] = data.get(userName,[]) + [{acc_name : acc_info}]
-        fp.seek(0)
-        json.dump(data, fp, indent=4)
-        print("Data Saved!!\n")
-        
-
 def managing(userName) :
     print("Hello "+userName+". Do you want to :\n 1. Store passwords \n 2. See passwords ")
     try:
         ans = int(input("Choose an option :"))
         if ans == 1 :
-            storing(userName)
+            #storing info
+            with open("master_pass.json","r+") as fp :
+                acc_name = input("Enter the name of service you want to store info for: ")
+                uName = input("Enter email or username: ")
+                password = input("Enter password: ")
+                acc_info = {uName : password}
+                #again loading n dumping
+                data = json.load(fp)
+                data[userName] = data.get(userName,[]) + [{acc_name : acc_info}]
+                fp.seek(0)
+                json.dump(data, fp, indent=4)
+                print("Data Saved!!\n")
+                managing(userName)
+        
         elif ans == 2 :
-            pass
+            print("\nYou have following information stored:")
+            with open("master_pass.json","r+") as fp :
+                data = json.load(fp)
+                items = data.get(userName)
+                print(items[1:])
+        
         else:
             print("Invalid Index! Try again.")
             managing(userName)
